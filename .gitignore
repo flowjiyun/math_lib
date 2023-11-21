@@ -36,3 +36,7 @@
 
 #format
 .clang-format
+
+#test excutable
+.all_check
+libtest
