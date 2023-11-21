@@ -40,6 +40,9 @@ class vec2 {
     float Size() const;
     constexpr float Dot(const vec2& rhs) const;
 
+    static const vec2 UnitX;
+    static const vec2 UnitY;
+
   private:
     static constexpr uint32_t Dimension{2};
     union {
@@ -49,6 +52,9 @@ class vec2 {
         std::array<float, Dimension> mScalars{0.0f, 0.0f};
     };
 };
+
+const vec2 vec2::UnitX(1.0f, 0.0f);
+const vec2 vec2::UnitY(0.0f, 1.0f);
 
 constexpr vec2::vec2(float x, float y) : mX(x), mY(y) {}
 
