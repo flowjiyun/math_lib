@@ -1,3 +1,4 @@
+#include "../src/mat2.hpp"
 #include "../src/utils.hpp"
 #include "../src/vec2.hpp"
 #include <iostream>
@@ -13,5 +14,10 @@ int main() {
     std::cout << c.x() << " " << c.y() << std::endl;
 
     std::cout << *jlm::ValuePtr(c) << std::endl;
+    std::cout << a.SizeSquared() << std::endl;
+    std::cout << a.Size() << std::endl;
+
+    std::cout << "Mat" << std::endl;
+    jlm::mat2 a = jlm::mat2();
     return 0;
 }
