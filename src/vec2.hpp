@@ -1,8 +1,6 @@
 #pragma once
 
-#include <array>
-#include <cassert>
-
+#include "common.hpp"
 namespace jlm {
 class vec2 {
   public:
@@ -36,6 +34,11 @@ class vec2 {
     constexpr vec2& operator*=(float scalar);
     constexpr vec2& operator/=(float scalar);
     constexpr vec2& operator*=(const vec2& rhs);
+
+    // member fucntion
+    constexpr float SizeSquared() const;
+    float Size() const;
+    constexpr float Dot(const vec2& rhs) const;
 
   private:
     static constexpr uint32_t Dimension{2};
@@ -116,5 +119,13 @@ constexpr vec2& vec2::operator*=(const vec2& rhs) {
     mX /= rhs.mX;
     mY /= rhs.mY;
     return *this;
+}
+
+constexpr float vec2::SizeSquared() const { return mX * mX + mY * mY; }
+
+float vec2::Size() const { return sqrtf(SizeSquared()); }
+
+constexpr float vec2::Dot(const vec2& rhs) const {
+    return mX * rhs.mX + mY * rhs.mY;
 }
 } // namespace jlm
