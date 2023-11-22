@@ -34,6 +34,8 @@ class vec2 {
     constexpr vec2& operator*=(float scalar);
     constexpr vec2& operator/=(float scalar);
     constexpr vec2& operator*=(const vec2& rhs);
+    bool operator==(const vec2& rhs) const;
+    bool operator!=(const vec2& rhs) const;
 
     // member fucntion
     constexpr float SizeSquared() const;
@@ -133,5 +135,18 @@ float vec2::Size() const { return sqrtf(SizeSquared()); }
 
 constexpr float vec2::Dot(const vec2& rhs) const {
     return mX * rhs.mX + mY * rhs.mY;
+}
+
+bool vec2::operator==(const vec2& rhs) const {
+    if (mScalars == rhs.mScalars) {
+        return true;
+    }
+    return false;
+}
+bool vec2::operator!=(const vec2& rhs) const {
+    if (mScalars != rhs.mScalars) {
+        return true;
+    }
+    return false;
 }
 } // namespace jlm

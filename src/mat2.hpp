@@ -23,6 +23,8 @@ class mat2 {
     mat2 operator*(float scalar) const;
     vec2 operator*(const vec2& rhs) const;
     mat2 operator*(const mat2& rhs) const;
+    bool operator!=(const mat2& rhs) const;
+    bool operator==(const mat2& rhs) const;
 
     // member function
     mat2 Transpose() const;
@@ -66,5 +68,19 @@ mat2 mat2::operator*(const mat2& rhs) const {
     mat2 result = Transpose();
     return mat2(vec2(result[0].Dot(rhs[0]), result[1].Dot(rhs[0])),
                 vec2(result[0].Dot(rhs[1]), result[1].Dot(rhs[1])));
+}
+
+bool mat2::operator==(const mat2& rhs) const {
+    if (mCols == rhs.mCols) {
+        return true;
+    }
+    return false;
+}
+
+bool mat2::operator!=(const mat2& rhs) const {
+    if (mCols != rhs.mCols) {
+        return true;
+    }
+    return false;
 }
 } // namespace jlm
