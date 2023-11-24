@@ -1,25 +1,43 @@
 #include "../src/mat2.hpp"
 #include "../src/utils.hpp"
 #include "../src/vec2.hpp"
+#include "../src/vec3.hpp"
+#include "../src/vec4.hpp"
 #include <cassert>
 #include <iostream>
 
 int main() {
     int Error = 0;
 
-    jlm::vec2 a = jlm::vec2(1.0f, 1.0f);
-    jlm::vec2 b = jlm::vec2(2.0f, 2.0f);
-    std::cout << a.x() << " " << a.y() << std::endl;
+    std::cout << "Vec Test" << std::endl;
+    // test vec + vec
+    {
+        jlm::vec2 a = jlm::vec2(1.0f, 1.0f);
+        jlm::vec2 b = jlm::vec2(2.0f, 2.0f);
+        jlm::vec2 c = a + b;
+        jlm::vec2 ans1 = jlm::vec2(3.0f, 3.0f);
+        if (c != ans1) {
+            Error++;
+        }
+        assert(c == ans1);
 
-    jlm::vec2 c = a + b;
-    std::cout << c.x() << " " << c.y() << std::endl;
+        c = -c;
+        jlm::vec2 ans2 = jlm::vec2(0.0f, 0.0f);
+    }
+    // test vec + scalar
+    {
+        jlm::vec2 a = jlm::vec2(1.0f, 1.0f);
+        jlm::vec2 b = jlm::vec2(2.0f, 2.0f);
+        jlm::vec2 c = a + b;
+        jlm::vec2 ans = jlm::vec2(3.0f, 3.0f);
+        if (c != ans) {
+            Error++;
+        }
+        assert(c == ans);
+    }
 
-    std::cout << *jlm::ValuePtr(c) << std::endl;
-    std::cout << a.SizeSquared() << std::endl;
-    std::cout << a.Size() << std::endl;
-
-    std::cout << "Mat" << std::endl;
-    // check mat * vec
+    std::cout << "Mat Test" << std::endl;
+    // test mat * vec
     {
         jlm::mat2 i = jlm::mat2(jlm::vec2::UnitX, jlm::vec2::UnitY);
         jlm::vec2 v = jlm::vec2(3.0f, 1.0f);
@@ -27,8 +45,9 @@ int main() {
         if (v != d) {
             Error++;
         }
+        assert(v == d);
     }
-    // check mat * mat
+    // test mat * mat
     {
         jlm::mat2 a = jlm::mat2(jlm::vec2(1.0f, 3.0f), jlm::vec2(2.0f, 4.0f));
         jlm::mat2 ans =
@@ -36,8 +55,9 @@ int main() {
         if (a * a != ans) {
             Error++;
         }
+        assert(a * a == ans);
     }
-    // check mat * scalar
+    // test mat * scalar
     {
         jlm::mat2 a = jlm::mat2(jlm::vec2(1.0f, 3.0f), jlm::vec2(2.0f, 4.0f));
         jlm::mat2 ans = jlm::mat2(jlm::vec2(2.0f, 6.0f), jlm::vec2(4.0f, 8.0f));
